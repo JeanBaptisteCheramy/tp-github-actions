@@ -22,5 +22,19 @@ jobs:
           echo "Deploying to staging"
           echo "triggered by: ${{github.actor}}"
 
+  deploy-prod:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: deploy to production
+        env:
+          API_KEY: ${{secrets.API_KEY}}
+        run: |
+          echo "Deploying to production"
+          echo "triggered by: ${{github.actor}}"
+
 
 
