@@ -26,7 +26,7 @@ jobs:
         run: npm run lint # Lance le linter du projet
 
       - name: Upload test coverage
-        run: actions/upload-artifact@v4 # Upload le résultat du coverage et le conserve 7 jours
+        uses: actions/upload-artifact@v4 # Upload le résultat du coverage et le conserve 7 jours
         with:
           name: coverage-report
           path: coverage/
