@@ -25,6 +25,9 @@ jobs:
       - name: Lint
         run: npm run lint # Lance le linter du projet
 
+      - name: Test
+        run: npm run test # Lance les tests du projet
+
       - name: Upload test coverage
         uses: actions/upload-artifact@v4 # Upload le résultat du coverage et le conserve 7 jours
         with:
