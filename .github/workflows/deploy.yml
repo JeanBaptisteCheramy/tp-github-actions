@@ -1,0 +1,26 @@
+name: deploy
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml    # Utilise le workflow ci.yml
+    secrets: inherit                    # recupère les secrets
+
+  deploy-staging:
+    needs: ci                           # bloqué tant que la ci ne passe pas
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: deploy to staging
+        env:
+          API_KEY: ${{secrets.API_KEY}}
+        run: |
+          echo "Deploying to staging"
+          echo "triggered by: ${{github.actor}}"
+
+
+
